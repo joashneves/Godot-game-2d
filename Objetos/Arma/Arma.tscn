@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://de0gnqcyy1xxv"]
+
+[ext_resource type="Texture2D" uid="uid://c3v2r4cr1vm5q" path="res://art/arma/arma.png" id="1_j5x6d"]
+[ext_resource type="Script" uid="uid://cc21o3q16lblp" path="res://Objetos/Arma/Arma.cs" id="1_t3q5t"]
+
+[node name="Arma" type="Node2D"]
+script = ExtResource("1_t3q5t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_j5x6d")

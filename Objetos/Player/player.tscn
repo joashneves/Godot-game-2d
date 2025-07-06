@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4q0pha6cgi4c"]
+
+[ext_resource type="Script" uid="uid://djssnxe4i4thi" path="res://Objetos/Player/Player.cs" id="1_4ntmi"]
+[ext_resource type="Texture2D" uid="uid://c7jfh6bxv0eos" path="res://art/player/player.png" id="1_l8h54"]
+[ext_resource type="PackedScene" uid="uid://de0gnqcyy1xxv" path="res://Objetos/Arma/Arma.tscn" id="3_lwu33"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ntmi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l8h54")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btcbx"]
+size = Vector2(15, 31)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_4ntmi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_4ntmi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_btcbx")
+
+[node name="Arma" parent="." instance=ExtResource("3_lwu33")]
+position = Vector2(10, -2)
