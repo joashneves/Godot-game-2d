@@ -3,33 +3,57 @@ using System;
 
 public partial class Arma : Node2D
 {
-  
-  	public override void _Process(double delta)
+  [Export]
+  public PackedScene BulletScene;
+  private Timer shootTimer;
+
+  private void OnShootTimeout()
+  {
+	Node2D nearestEnemy = GetNearestEnemy();
+	if (nearestEnemy != null)
 	{
-		Node2D nearestEnemy = GetNearestEnemy();
-		if (nearestEnemy != null)
-			LookAt(nearestEnemy.GlobalPosition);
+	  var bullet = (Bala)BulletScene.Instantiate();
+	  GetTree().CurrentScene.AddChild(bullet);
+	  var dir = nearestEnemy.GlobalPosition - GlobalPosition;
+    bullet.GlobalPosition = GetParent<Node2D>().GlobalPosition;
+	  bullet.Initilize(dir);
 	}
+	return;
+  }
 
   private Node2D GetNearestEnemy()
   {
-    var enemies = GetTree().GetNodesInGroup("inimigo");
-    Node2D nearest = null;
-    float nearestDist = float.MaxValue;
+	var enemies = GetTree().GetNodesInGroup("inimigo");
+	Node2D nearest = null;
+	float nearestDist = float.MaxValue;
 
-    foreach (Node node in enemies)
-    {
-      if (node is Node2D enemy)
-      {
-        float dist = GlobalPosition.DistanceTo(enemy.GlobalPosition);
-        if (dist < nearestDist)
-        {
-          nearestDist = dist;
-          nearest = enemy;
-        }
-      }
-    }
-    return nearest;
+	foreach (Node node in enemies)
+	{
+	  if (node is Node2D enemy)
+	  {
+		float dist = GlobalPosition.DistanceTo(enemy.GlobalPosition);
+		if (dist < nearestDist)
+		{
+		  nearestDist = dist;
+		  nearest = enemy;
+		}
+	  }
+	}
+	return nearest;
   }
+
+  public override void _Process(double delta)
+  {
+	Node2D nearestEnemy = GetNearestEnemy();
+	if (nearestEnemy != null)
+	  LookAt(nearestEnemy.GlobalPosition);
+  }
+  public override void _Ready()
+  {
+	shootTimer = GetNode<Timer>("Timer");
+	shootTimer.Timeout += OnShootTimeout;
+	shootTimer.Start();
+  }
+
 
 }
