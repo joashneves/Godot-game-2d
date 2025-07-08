@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cc21o3q16lblp" path="res://Objetos/Arma/Arma.cs" id="1_t3q5t"]
 [ext_resource type="PackedScene" uid="uid://cgnevtjwg48cp" path="res://Objetos/Arma/Balas/Bala.tscn" id="2_uwrjw"]
 
-[node name="Arma" type="Node2D"]
+[node name="Arma" type="Node2D" groups=["arma"]]
 script = ExtResource("1_t3q5t")
 BulletScene = ExtResource("2_uwrjw")
 

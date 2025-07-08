@@ -6,20 +6,25 @@ public partial class Arma : Node2D
   [Export]
   public PackedScene BulletScene;
   private Timer shootTimer;
+	public void SetFireUpdated(double seconds)
+	{
+		shootTimer.WaitTime -= Math.Max(0.02, shootTimer.WaitTime - seconds); 
+		shootTimer.Start();
+	}
 
   private void OnShootTimeout()
-  {
-	Node2D nearestEnemy = GetNearestEnemy();
-	if (nearestEnemy != null)
 	{
-	  var bullet = (Bala)BulletScene.Instantiate();
-	  GetTree().CurrentScene.AddChild(bullet);
-	  var dir = nearestEnemy.GlobalPosition - GlobalPosition;
-    bullet.GlobalPosition = GetParent<Node2D>().GlobalPosition;
-	  bullet.Initilize(dir);
+		Node2D nearestEnemy = GetNearestEnemy();
+		if (nearestEnemy != null)
+		{
+			var bullet = (Bala)BulletScene.Instantiate();
+			GetTree().CurrentScene.AddChild(bullet);
+			var dir = nearestEnemy.GlobalPosition - GlobalPosition;
+			bullet.GlobalPosition = GetParent<Node2D>().GlobalPosition;
+			bullet.Initilize(dir);
+		}
+		return;
 	}
-	return;
-  }
 
   private Node2D GetNearestEnemy()
   {

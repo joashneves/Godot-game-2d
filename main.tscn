@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1h5bq4yqo7wm"]
+[gd_scene load_steps=4 format=3 uid="uid://c1h5bq4yqo7wm"]
 
 [ext_resource type="PackedScene" uid="uid://dh4dmpynrqrip" path="res://Objetos/Inimigo/Inimigo.tscn" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c4q0pha6cgi4c" path="res://Objetos/Player/player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://b3dff23yc6afw" path="res://Objetos/Inimigo/Gerador/GeradorInimigo.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node2D"]
 
@@ -10,3 +11,6 @@ PlayerPath = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(179, 165)
+
+[node name="GeradorInimigo" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(28, 234)

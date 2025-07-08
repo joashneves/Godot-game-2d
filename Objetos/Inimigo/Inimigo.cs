@@ -19,11 +19,18 @@ public partial class Inimigo : CharacterBody2D
     if (Life <= 0)
     {
       QueueFree(); // Destroi o inimigo
-    } 
+    }
+  }
+  public void Setup(Node2D playerNode)
+  {
+    player = playerNode;
   }
   public override void _Ready()
   {
-    player = GetNode<Node2D>(PlayerPath);
+    if (player == null && PlayerPath != null && !PlayerPath.IsEmpty)
+    {
+      player = GetNode<Node2D>(PlayerPath);
+    }
   }
 
   public override void _PhysicsProcess(double delta)
@@ -40,6 +47,18 @@ public partial class Inimigo : CharacterBody2D
 
     knockback = knockback.MoveToward(Vector2.Zero, 50 * (float)delta);
 
-    
+
+  }
+  public override void _ExitTree()
+  {
+    base._ExitTree();
+    GD.Print("Deletado");
+    var armas = GetTree().GetNodesInGroup("arma");
+    if (armas.Count > 0)
+    {
+      var arma = (Arma)armas[0];
+      double seconds = 0.2;
+      arma.SetFireUpdated(seconds); // diminui 0.2 segundos
+    }
   }
 }
