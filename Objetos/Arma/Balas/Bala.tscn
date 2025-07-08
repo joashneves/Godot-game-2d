@@ -5,7 +5,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7w8d"]
 
-[node name="Bala" type="Node2D"]
+[node name="Bala" type="Area2D"]
 script = ExtResource("1_edhxh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

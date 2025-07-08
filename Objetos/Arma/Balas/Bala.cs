@@ -1,22 +1,39 @@
 using Godot;
 using System;
 
-public partial class Bala : Node2D
+public partial class Bala : Area2D
 {
   [Export]
   public float Speed { get; set; } = 500;
   private Vector2 direction;
+  // Se auto destroi quando toca no inimigo
+  private void OnBodyEntered(Node body)
+  {
+    if (body is Inimigo inimigo)
+    {
+      GD.Print("Encostou");
+      inimigo.TakeDamage(1, -direction);
+      QueueFree();
+    }
+  }
   public void Initilize(Vector2 dir)
   {
     direction = dir.Normalized();
   }
-  public override void _Process(double delta)
+  public override void _Ready()
   {
-    Position += direction * Speed * (float)delta;
+    base._Ready();
+
+    BodyEntered += OnBodyEntered; // Conecta o sinal programaticamente
+  }
+  public override void _PhysicsProcess(double delta)
+  {
+    GlobalPosition += direction * Speed * (float)delta;
+    // Destruir se sair da tela
     if (!GetViewportRect().HasPoint(GlobalPosition))
     {
       QueueFree();
     }
-
   }
+
 }
