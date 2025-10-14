@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://58x5gggp8oyx"]
+
+[ext_resource type="Script" uid="uid://d01qlli56e87g" path="res://Objetos/Arma/Baluda/Baluda.cs" id="1_a3ido"]
+[ext_resource type="Texture2D" uid="uid://dt1ayt28cpo7c" path="res://art/balas/6ae7ac0c-5db7-4103-88d6-91d17008082d.png" id="1_skwgh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a3ido"]
+radius = 22.135944
+
+[node name="Baluda" type="Area2D"]
+script = ExtResource("1_a3ido")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_skwgh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a3ido")

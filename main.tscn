@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cmvfwuq06h6kh" path="res://Objetos/Boss/Boss.tscn" id="4_1bvp3"]
 
 [node name="Main" type="Node2D"]
+position = Vector2(12, 1)
 
 [node name="Inimigo" parent="." instance=ExtResource("1_0xm2m")]
 PlayerPath = NodePath("../Player")
