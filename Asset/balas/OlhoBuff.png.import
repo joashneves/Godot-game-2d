@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnq42vorup80p"
-path="res://.godot/imported/Inimigo.png-5ab98488636ab367ffe1f95c77fdcee2.ctex"
+uid="uid://kk6o478d7ktm"
+path="res://.godot/imported/OlhoBuff.png-7f5df98a48b0ee99c7aab2822568dc89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/inimigo/Inimigo.png"
-dest_files=["res://.godot/imported/Inimigo.png-5ab98488636ab367ffe1f95c77fdcee2.ctex"]
+source_file="res://Asset/balas/OlhoBuff.png"
+dest_files=["res://.godot/imported/OlhoBuff.png-7f5df98a48b0ee99c7aab2822568dc89.ctex"]
 
 [params]
 

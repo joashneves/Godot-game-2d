@@ -56,7 +56,11 @@ public partial class GeradorInimigo : Node2D
 	  inimigo.PlayerPath = pathToPlayer;
 	  inimigo.Setup((Node2D)players[0]);
 	}
-	return;
+
+	// Define um novo tempo de espera aleatório entre 5 e 20 segundos para o próximo inimigo
+	Random rand = new();
+	spawnTimer.WaitTime = (float)(rand.NextDouble() * 15.0 + 5.0);
+	spawnTimer.Start(); // Reinicia o timer com o novo tempo
   }
   public override void _Ready()
   {

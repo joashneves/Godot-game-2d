@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnq42vorup80p"
-path="res://.godot/imported/Inimigo.png-5ab98488636ab367ffe1f95c77fdcee2.ctex"
+uid="uid://ca0wbm7hwngg6"
+path="res://.godot/imported/BuffsCard.png-fcae0f0bc938290ecbe62a09dd2d5d62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/inimigo/Inimigo.png"
-dest_files=["res://.godot/imported/Inimigo.png-5ab98488636ab367ffe1f95c77fdcee2.ctex"]
+source_file="res://Asset/buffs/BuffsCard.png"
+dest_files=["res://.godot/imported/BuffsCard.png-fcae0f0bc938290ecbe62a09dd2d5d62.ctex"]
 
 [params]
 

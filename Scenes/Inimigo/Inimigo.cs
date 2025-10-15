@@ -58,7 +58,7 @@ public partial class Inimigo : CharacterBody2D
     {
       var arma = (Arma)armas[0];
       double seconds = 0.2;
-      arma.SetFireUpdated(seconds); // diminui 0.2 segundos
+      //arma.SetFireUpdated(seconds); // diminui 0.2 segundos
     }
   }
 }

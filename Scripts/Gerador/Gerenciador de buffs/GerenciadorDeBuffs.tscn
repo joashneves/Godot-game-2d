@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy8k7v3kbv2yp"]
+
+[ext_resource type="Script" uid="uid://b2qdxje2uifju" path="res://Scripts/Gerador/Gerenciador de buffs/GerenciadorDeBuffs.cs" id="1_ymdm6"]
+[ext_resource type="PackedScene" uid="uid://bwt1a73g8kqfc" path="res://Scenes/Buffs/buffs.tscn" id="2_eukr7"]
+
+[node name="GerenciadorDeBuffs" type="Node2D"]
+script = ExtResource("1_ymdm6")
+BuffCardScene = ExtResource("2_eukr7")

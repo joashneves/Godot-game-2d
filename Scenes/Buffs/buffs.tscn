@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwt1a73g8kqfc"]
+
+[ext_resource type="Script" uid="uid://bghke64gb82vm" path="res://Scripts/Gerador/Gerenciador de buffs/BuffCard.cs" id="1_oxv7v"]
+[ext_resource type="Texture2D" uid="uid://ca0wbm7hwngg6" path="res://Asset/buffs/BuffsCard.png" id="1_xj4pr"]
+
+[node name="Buffs" type="Node2D"]
+script = ExtResource("1_oxv7v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(95, 159)
+texture = ExtResource("1_xj4pr")
+
+[node name="BuffContainer" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0

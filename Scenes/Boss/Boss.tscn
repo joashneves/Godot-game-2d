@@ -1,18 +1,17 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmvfwuq06h6kh"]
 
-[ext_resource type="Texture2D" uid="uid://d2b2onnul6xyi" path="res://art/boss/0e1f0987-cddc-41cd-b5c6-5342737f82e8.png" id="1_ma420"]
-[ext_resource type="Script" uid="uid://bikogdjnlg8u6" path="res://Objetos/Boss/Boss.cs" id="1_qu57a"]
+[ext_resource type="Script" uid="uid://bikogdjnlg8u6" path="res://Scenes/Boss/Boss.cs" id="1_qu57a"]
+[ext_resource type="Texture2D" uid="uid://c0jonwni6nbti" path="res://Asset/boss/Boss.png" id="2_xyuww"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qu57a"]
 size = Vector2(69, 45)
 
 [node name="Boss" type="CharacterBody2D"]
 script = ExtResource("1_qu57a")
-life = 500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_ma420")
+texture = ExtResource("2_xyuww")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 2.5)

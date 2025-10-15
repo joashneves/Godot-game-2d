@@ -46,7 +46,6 @@ public partial class Arma : Node2D
 	}
 	return nearest;
   }
-
   public override void _Process(double delta)
   {
 	Node2D nearestEnemy = GetNearestEnemy();

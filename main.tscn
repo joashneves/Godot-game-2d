@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1h5bq4yqo7wm"]
+[gd_scene load_steps=7 format=3 uid="uid://c1h5bq4yqo7wm"]
 
-[ext_resource type="PackedScene" uid="uid://dh4dmpynrqrip" path="res://Objetos/Inimigo/Inimigo.tscn" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://c4q0pha6cgi4c" path="res://Objetos/Player/player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://b3dff23yc6afw" path="res://Objetos/Inimigo/Gerador/GeradorInimigo.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://cmvfwuq06h6kh" path="res://Objetos/Boss/Boss.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dh4dmpynrqrip" path="res://Scenes/Inimigo/Inimigo.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dy8k7v3kbv2yp" path="res://Scripts/Gerador/Gerenciador de buffs/GerenciadorDeBuffs.tscn" id="1_7mycd"]
+[ext_resource type="PackedScene" uid="uid://c4q0pha6cgi4c" path="res://Scenes/Player/player.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://b2qdxje2uifju" path="res://Scripts/Gerador/Gerenciador de buffs/GerenciadorDeBuffs.cs" id="2_272bh"]
+[ext_resource type="PackedScene" uid="uid://b3dff23yc6afw" path="res://Scripts/Gerador/GeradorInimigo.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cmvfwuq06h6kh" path="res://Scenes/Boss/Boss.tscn" id="4_1bvp3"]
 
 [node name="Main" type="Node2D"]
 position = Vector2(12, 1)
+
+[node name="GerenciadorDeBuffs" parent="." instance=ExtResource("1_7mycd")]
+position = Vector2(443.03003, 131.45999)
+script = ExtResource("2_272bh")
 
 [node name="Inimigo" parent="." instance=ExtResource("1_0xm2m")]
 PlayerPath = NodePath("../Player")
