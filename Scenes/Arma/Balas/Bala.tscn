@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cgnevtjwg48cp"]
 
-[ext_resource type="Script" uid="uid://b608ihlhs66kh" path="res://Objetos/Arma/Balas/Bala.cs" id="1_edhxh"]
-[ext_resource type="Texture2D" uid="uid://b838gy3p2dnnw" path="res://art/balas/bala.png" id="1_r7w8d"]
+[ext_resource type="Script" uid="uid://b608ihlhs66kh" path="res://Scenes/Arma/Balas/Bala.cs" id="1_edhxh"]
+[ext_resource type="Texture2D" uid="uid://b838gy3p2dnnw" path="res://Asset/balas/bala.png" id="1_r7w8d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r7w8d"]
 

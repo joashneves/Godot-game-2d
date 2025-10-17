@@ -32,4 +32,4 @@ shape = SubResource("RectangleShape2D_btcbx")
 [node name="Arma" parent="." instance=ExtResource("3_lwu33")]
 position = Vector2(10, -2)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="." groups=["playerCamera"]]
