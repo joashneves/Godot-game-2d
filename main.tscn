@@ -145,11 +145,7 @@ position = Vector2(28, 234)
 
 [node name="Boss" parent="." groups=["inimigo"] instance=ExtResource("4_1bvp3")]
 position = Vector2(544, 124)
-Speed = null
-DashSpeed = null
-DashDuration = null
-DashCooldown = null
-Life = null
+Life = 500
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 light_mask = 512

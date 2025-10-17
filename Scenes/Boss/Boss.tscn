@@ -10,7 +10,7 @@ size = Vector2(69, 45)
 [node name="Boss" type="CharacterBody2D"]
 script = ExtResource("1_qu57a")
 Life = 50000
-_bulletScene = ExtResource("2_vxow8")
+BossBalaScene = ExtResource("2_vxow8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

@@ -13,9 +13,13 @@ public partial class Boss : CharacterBody2D
 	public double DashCooldown = 3.0; // seconds
 	[Export]
 	public int Life { get; set; } = 500;
+
+	// A cena da bala agora é uma variável privada que será carregada no código.
+	private PackedScene _bossBalaScene;
+
 	[Export]
-	public PackedScene _bulletScene;
-	private Timer _timer;
+	public double ShootCooldown = 1.0; // Tempo em segundos entre cada tiro
+	private double _shootTimer;
 
 	private Player _player;
 	private Vector2 _dashDirection;
@@ -23,9 +27,21 @@ public partial class Boss : CharacterBody2D
 	private double _dashTimer;
 	private double _cooldownTimer;
 
-  private void StartDash()
+	public override void _Ready()
 	{
-		GD.Print("Boss iniciando dash!");
+		base._Ready();
+
+		// --- MUDANÇA: Carrega a cena da bala usando o caminho dela, igual ao preload() ---
+		_bossBalaScene = GD.Load<PackedScene>("res://Scenes/Boss/BossBala.tscn");
+
+		_player = GetTree().GetFirstNodeInGroup("player") as Player;
+		_cooldownTimer = DashCooldown;
+		_shootTimer = ShootCooldown; // Garante que o boss possa atirar assim que o jogo começa
+		GD.Print(Life);
+	}
+
+	private void StartDash()
+	{
 		_isDashing = true;
 		_dashTimer = 0;
 		_cooldownTimer = 0;
@@ -36,31 +52,24 @@ public partial class Boss : CharacterBody2D
 		}
 		else
 		{
-			// Caso o player não seja encontrado
 			_dashDirection = Vector2.Right.Rotated((float)GD.RandRange(0, 2 * Math.PI));
 		}
 	}
-  public void TakeDamage(int damege)
-  {
-	Life =- damege;
-	
-	if (Life <= 0)
-		{
-			GD.Print(Life);
-	  //QueueFree(); // Destroi o inimigo
-	}
-  }
 
-	public override void _Ready()
+	public void TakeDamage(int damege)
 	{
-		// Busca pelo nó do player no grupo "player"
-		_player = GetTree().GetFirstNodeInGroup("player") as Player;
-		_cooldownTimer = DashCooldown; 
+		Life -= damege;
+		GD.Print("VIda boss : ",Life);
+		if (Life <= 0)
+		{
+			QueueFree(); // Destroi o inimigo
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		_cooldownTimer += delta;
+		_shootTimer += delta;
 
 		if (_isDashing)
 		{
@@ -81,16 +90,13 @@ public partial class Boss : CharacterBody2D
 			{
 				Vector2 posicaoPlayer = _player.GlobalPosition;
 				LookAt(posicaoPlayer);
-				float distancia = this.GlobalPosition.DistanceTo(posicaoPlayer);
-				if(distancia < 250)
+				float distancia = GlobalPosition.DistanceTo(posicaoPlayer);
+
+				if (distancia < 250 && _shootTimer >= ShootCooldown)
 				{
-					var bullet = (Bala)_bulletScene.Instantiate();
-		GetTree().CurrentScene.AddChild(bullet);
-		var dir = _player.GlobalPosition - GlobalPosition;
-		bullet.GlobalPosition = GetParent<Node2D>().GlobalPosition;
-		bullet.Initilize(dir);
-          
-        }
+					_shootTimer = 0; // Reinicia o contador do tiro
+					Shoot();
+				}
 			}
 
 			// Verifica se pode dar o dash novamente
@@ -103,4 +109,21 @@ public partial class Boss : CharacterBody2D
 		MoveAndSlide();
 	}
 
+	private void Shoot()
+	{
+		if (_bossBalaScene == null)
+		{
+			GD.PrintErr("Não foi possível carregar a cena da bala. Verifique o caminho em _Ready().");
+			return;
+		}
+
+		BossBala bullet = _bossBalaScene.Instantiate<BossBala>();
+		
+		GetTree().Root.AddChild(bullet);
+
+		Vector2 directionToPlayer = (_player.GlobalPosition - GlobalPosition).Normalized();
+		bullet.GlobalPosition = this.GlobalPosition;
+		bullet.Initilize(directionToPlayer);
+	}
 }
+
