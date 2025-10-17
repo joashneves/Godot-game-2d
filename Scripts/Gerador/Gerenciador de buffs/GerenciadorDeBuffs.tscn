@@ -1,8 +1,27 @@
 [gd_scene load_steps=3 format=3 uid="uid://dy8k7v3kbv2yp"]
 
-[ext_resource type="Script" uid="uid://b2qdxje2uifju" path="res://Scripts/Gerador/Gerenciador de buffs/GerenciadorDeBuffs.cs" id="1_ymdm6"]
-[ext_resource type="PackedScene" uid="uid://bwt1a73g8kqfc" path="res://Scenes/Buffs/buffs.tscn" id="2_eukr7"]
+[ext_resource type="Script" uid="uid://7ipo2dexipsw" path="res://Scripts/Gerador/Gerenciador de buffs/GerenciadorDeBuffs.cs" id="1_ymdm6"]
+[ext_resource type="Texture2D" uid="uid://ca0wbm7hwngg6" path="res://Asset/buffs/BuffsCard.png" id="2_eukr7"]
 
-[node name="GerenciadorDeBuffs" type="Node2D"]
+[node name="GerenciadorDeBuffs" type="Control" node_paths=PackedStringArray("_buffCardButton")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_ymdm6")
-BuffCardScene = ExtResource("2_eukr7")
+_buffCardButton = NodePath("BuffCardButton")
+
+[node name="BuffCardButton" type="Button" parent="."]
+process_mode = 2
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+action_mode = 0
+icon = ExtResource("2_eukr7")
+
+[connection signal="pressed" from="BuffCardButton" to="." method="_on_click_buff"]

@@ -10,16 +10,10 @@ public partial class Player : CharacterBody2D
   public override void _Ready()
   {
 		ScreenSize = GetViewportRect().Size;
-
-		// Encontra o nó do gerenciador de buffs na árvore de cena.
-		// O caminho "/root/Main/GerenciadorDeBuffs" é um exemplo.
-		// Ajuste se a sua estrutura de cena for diferente.
-		var gerenciador = GetNode<GerenciadorDeBuffs>("/root/Main/GerenciadorDeBuffs");
-
-		// Aplica o buff desejado diretamente.
-		gerenciador.StartBuffSelection();
+		//GetTree().Paused = false;
+		
   }
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		var velocity = Vector2.Zero;
 
