@@ -6,9 +6,12 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public int Speed { get; set; } = 400;
 	public Vector2 ScreenSize;
+	private Arma _arma;
 
   public override void _Ready()
   {
+		_arma = GetNode<Arma>("arma");
+		GD.Print(_arma);
 		ScreenSize = GetViewportRect().Size;
 		//GetTree().Paused = false;
 		

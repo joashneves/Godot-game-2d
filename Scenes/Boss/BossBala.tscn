@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://0qxxlusultd0"]
+
+[ext_resource type="Script" uid="uid://btotf5tht3iyw" path="res://Scenes/Boss/BossBala.cs" id="1_1avbj"]
+[ext_resource type="Texture2D" uid="uid://nwglks3p72ap" path="res://Asset/boss/bossBala/olhobala.png" id="1_j8tqa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1avbj"]
+
+[node name="BossBala" type="Area2D"]
+script = ExtResource("1_1avbj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_j8tqa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1avbj")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timeout"]

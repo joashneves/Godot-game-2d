@@ -11,10 +11,13 @@ public partial class Boss : CharacterBody2D
 	public double DashDuration = 0.5; // seconds
 	[Export]
 	public double DashCooldown = 3.0; // seconds
-  [Export]
-  public int Life { get; set; } = 50;
+	[Export]
+	public int Life { get; set; } = 500;
+	[Export]
+	public PackedScene _bulletScene;
+	private Timer _timer;
 
-	private Node2D _player;
+	private Player _player;
 	private Vector2 _dashDirection;
 	private bool _isDashing = false;
 	private double _dashTimer;
@@ -39,18 +42,19 @@ public partial class Boss : CharacterBody2D
 	}
   public void TakeDamage(int damege)
   {
-	Life -= damege;
+	Life =- damege;
 	
 	if (Life <= 0)
-	{
-	  QueueFree(); // Destroi o inimigo
+		{
+			GD.Print(Life);
+	  //QueueFree(); // Destroi o inimigo
 	}
   }
 
 	public override void _Ready()
 	{
 		// Busca pelo nó do player no grupo "player"
-		_player = GetTree().GetFirstNodeInGroup("player") as Node2D;
+		_player = GetTree().GetFirstNodeInGroup("player") as Player;
 		_cooldownTimer = DashCooldown; 
 	}
 
@@ -75,7 +79,18 @@ public partial class Boss : CharacterBody2D
 		{
 			if (_player != null)
 			{
-				LookAt(_player.GlobalPosition);
+				Vector2 posicaoPlayer = _player.GlobalPosition;
+				LookAt(posicaoPlayer);
+				float distancia = this.GlobalPosition.DistanceTo(posicaoPlayer);
+				if(distancia < 250)
+				{
+					var bullet = (Bala)_bulletScene.Instantiate();
+		GetTree().CurrentScene.AddChild(bullet);
+		var dir = _player.GlobalPosition - GlobalPosition;
+		bullet.GlobalPosition = GetParent<Node2D>().GlobalPosition;
+		bullet.Initilize(dir);
+          
+        }
 			}
 
 			// Verifica se pode dar o dash novamente
@@ -88,5 +103,4 @@ public partial class Boss : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	
 }
